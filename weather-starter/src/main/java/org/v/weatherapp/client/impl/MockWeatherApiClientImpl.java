@@ -5,7 +5,6 @@ import org.v.weatherapp.client.WeatherApiClient;
 import org.v.weatherapp.model.*;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
