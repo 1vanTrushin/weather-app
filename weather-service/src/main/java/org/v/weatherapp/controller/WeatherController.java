@@ -20,7 +20,14 @@ public class WeatherController {
     @GetMapping("/api/weather/{city}")
     @TrackMetric(value = "getWeatherByCityMetric")
     public WeatherData getWeatherByCity(@PathVariable String city) {
-        return weatherService.getWeatherByCity(city);
+        return weatherService.getWeatherByCity(city, "");
     }
+
+    @GetMapping("/api/weather/{city}/forecast/{days}")
+    @TrackMetric(value = "getForecastWeatherByCityMetric")
+    public WeatherData getWeatherByCity(@PathVariable String city, @PathVariable(required = false) String days) {
+        return weatherService.getWeatherByCity(city, days);
+    }
+
 
 }

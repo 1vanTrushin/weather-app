@@ -7,5 +7,6 @@ public class WeatherData {
 
     private Location location;
     private Current current;
+    private Forecast forecast;
 
 }

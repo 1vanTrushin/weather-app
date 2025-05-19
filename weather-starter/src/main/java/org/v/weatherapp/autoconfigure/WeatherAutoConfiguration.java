@@ -6,8 +6,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.v.weatherapp.client.impl.WeatherApiClient;
-import org.v.weatherapp.client.impl.MockWeatherApiClient;
+import org.v.weatherapp.client.impl.WeatherApiClientImpl;
+import org.v.weatherapp.client.impl.MockWeatherApiClientImpl;
 import org.v.weatherapp.metrics.TrackMetricBeanPostProcessor;
 import org.v.weatherapp.properties.WeatherProperties;
 
@@ -20,8 +20,8 @@ public class WeatherAutoConfiguration {
     @ConditionalOnMissingBean
     public org.v.weatherapp.client.WeatherApiClient weatherApiClient(WeatherProperties properties, WebClient.Builder webClientBuilder) {
         return properties.isUseMock() ?
-                new MockWeatherApiClient() :
-                new WeatherApiClient(webClientBuilder, properties);
+                new MockWeatherApiClientImpl() :
+                new WeatherApiClientImpl(webClientBuilder, properties);
     }
 
     @Bean

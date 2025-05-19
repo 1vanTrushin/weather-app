@@ -38,10 +38,10 @@ public class AnalyticsService {
                 .register(meterRegistry);
     }
 
-    public void recordWeatherApiRequest(String city) {
+    public void recordWeatherApiRequest(String city, String forecast) {
         totalRequestsCounter.increment();
         cityRequestCounts.computeIfAbsent(city, k -> new AtomicLong(0)).incrementAndGet();
-//        forecastTypeCounts.computeIfAbsent(forecastType, k -> new AtomicLong(0)).incrementAndGet();
+        forecastTypeCounts.computeIfAbsent(forecast, k -> new AtomicLong(0)).incrementAndGet();
     }
 
     public void recordExternalApiResponseTime(long timeMillis) {
