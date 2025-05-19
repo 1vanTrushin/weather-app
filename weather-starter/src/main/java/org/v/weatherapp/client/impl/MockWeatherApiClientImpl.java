@@ -3,6 +3,7 @@ package org.v.weatherapp.client.impl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.v.weatherapp.client.WeatherApiClient;
 import org.v.weatherapp.model.*;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +12,14 @@ import java.util.List;
 @ConditionalOnProperty(name = "weather.use-mock", havingValue = "true")
 public class MockWeatherApiClientImpl implements WeatherApiClient {
     @Override
-    public WeatherData getCurrentWeather(String city) {
-        return WeatherDataFactory.createWeatherData();
+    public Mono<WeatherData> getCurrentWeather(String city) {
+        return Mono.just(WeatherDataFactory.createWeatherData());
     }
 
 
     @Override
-    public WeatherData getForecastWeather(String city, String Days) {
-        return WeatherDataFactory.createForecastWeatherData();
+    public Mono<WeatherData> getForecastWeather(String city, String Days) {
+        return Mono.just(WeatherDataFactory.createForecastWeatherData());
     }
 
 

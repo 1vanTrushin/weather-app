@@ -1,8 +1,9 @@
 package org.v.weatherapp.client;
 
 import org.v.weatherapp.model.WeatherData;
+import reactor.core.publisher.Mono;
 
 public interface WeatherApiClient {
-    WeatherData getCurrentWeather(String city);
-    WeatherData getForecastWeather(String city, String Days);
+    Mono<WeatherData> getCurrentWeather(String city);
+    Mono<WeatherData> getForecastWeather(String city, String Days);
 }

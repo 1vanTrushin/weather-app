@@ -19,15 +19,19 @@ public class AnalyticsAspect {
         this.analyticsService = analyticsService;
     }
 
-    @Pointcut("execution(* org.v.weatherapp.service.WeatherService.getWeatherByCity(String, forecast)) && args(city, forecast)")
-    public void weatherServiceGetWeatherByCityPointcut(String city, String forecast) {}
+    @Pointcut("execution(* org.v.weatherapp.service.WeatherService.getWeatherByCity(String, String)) && args(city, forecast)")
+    public void weatherServiceGetWeatherByCityPointcut(String city, String forecast) {
+    }
 
     @Around(value = "weatherServiceGetWeatherByCityPointcut(city, forecast)", argNames = "joinPoint,city,forecast")
     public Object measureExternalApiResponseTime(ProceedingJoinPoint joinPoint, String city, String forecast) throws Throwable {
         long startTime = System.nanoTime();
         Object result;
         try {
-            analyticsService.recordWeatherApiRequest(city, forecast);
+            String type =
+                    forecast.isEmpty() ? "CurrentWeather" : "ForecastWeather";
+
+            analyticsService.recordWeatherApiRequest(city, type);
             result = joinPoint.proceed();
         } finally {
             long durationMillis = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime);
