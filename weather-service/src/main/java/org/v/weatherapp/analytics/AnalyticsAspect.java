@@ -19,7 +19,7 @@ public class AnalyticsAspect {
         this.analyticsService = analyticsService;
     }
 
-    @Pointcut("execution(* org.v.weatherapp.service.WeatherService.getWeatherByCity(String, String)) && args(city, forecast)")
+    @Pointcut(value = "execution(* org.v.weatherapp.service.WeatherService.getWeatherByCity(String, String)) && args(city, forecast)", argNames = "city,forecast")
     public void weatherServiceGetWeatherByCityPointcut(String city, String forecast) {
     }
 
