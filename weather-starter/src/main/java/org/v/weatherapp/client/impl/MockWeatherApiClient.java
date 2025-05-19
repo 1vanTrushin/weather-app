@@ -1,9 +1,8 @@
-package org.v.weatherapp.client;
+package org.v.weatherapp.client.impl;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Component;
+import org.v.weatherapp.client.WeatherApiClient;
 import org.v.weatherapp.model.Current;
-import org.v.weatherapp.model.ForecastData;
 import org.v.weatherapp.model.Location;
 import org.v.weatherapp.model.WeatherData;
 
@@ -13,14 +12,17 @@ public class MockWeatherApiClient implements WeatherApiClient {
     @Override
     public WeatherData getCurrentWeather(String city) {
 
+        //вынести в статичный объект
         Current current = new Current();
-        current.setTemp_c(15.0);
+        current.setTempC(15.0);
         Location location = new Location();
         location.setName("Moscow");
+        //вынести в статичный объект
 
         WeatherData weatherData = new WeatherData();
         weatherData.setCurrent(current);
         weatherData.setLocation(location);
+        //вынести в статичный объект
 
         return weatherData;
     }

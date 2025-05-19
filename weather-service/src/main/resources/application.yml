@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: weather-app
+
+
+weather:
+  api-url: http://api.weatherapi.com
+  api-key: 5c80f3395b434df8ba4141351251904
+  use-mock: false
+  cache-ttl: PT10M
+
+management:
+  endpoints:
+    access:
+      default: none
+    web:
+      exposure:
+        include: health, prometheus
+  endpoint:
+    health:
+      access: read_only
+      show-details: always
+      probes:
+        enabled: true
+    prometheus:
+      access: read_only
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+        http.client.requests: true
+      maximum-expected-value:
+        http.server.requests: 5s
+        http.client.requests: 5s
+    tags:
+      application: ${spring.application.name}
+  observations:
+    annotations:
+      enabled: true
+  server:
+    port: 8086
+
+server:
+  port: 8086

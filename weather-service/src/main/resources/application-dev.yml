@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: weather-app
+
+weather:
+  use-mock: true

@@ -1,9 +1,0 @@
-spring:
-  application:
-    name: weather-app
-
-weather:
-  api-url: http://api.weatherapi.com
-  api-key: 5c80f3395b434df8ba4141351251904
-  use-mock: false
-  cache-ttl: PT10M

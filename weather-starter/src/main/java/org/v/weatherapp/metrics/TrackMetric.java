@@ -11,4 +11,6 @@ public @interface TrackMetric {
 
     String value() default "";
     String description() default "";
+
+    String[] extraTags() default {};
 }
